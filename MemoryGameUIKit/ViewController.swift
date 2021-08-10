@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var countFlip = 0
-    var emodji = ["🐌","🐞","🐌","🐞","🦅","🦉","🦅","🦉","🐣","🐥","🪰","🪲","🐣","🐥","🪰","🪲","🐙","🐻","🦋","🦎","🐙","🐻","🦋","🦎","🐌","🐞","🐌","🐞","🦅","🦉","🦅","🦉","🐣","🐥","🪰","🪲","🐣","🐥","🪰","🪲","🐙","🐻","🦋","🦎","🐙","🐻","🦋","🦎","🐌","🐞","🐌","🐞","🦅","🦉","🦅","🦉","🐣","🐥","🪰","🪲","🐣","🐥","🪰","🪲","🐙","🐻","🦋","🦎","🐙","🐻","🦋","🦎"]
+    var emodji = [String]()
     var emodjiSelect = 0
     var flipBool = false
     var OneTapMemoryEmodji = ""
@@ -18,16 +18,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       gameLevelView(level: 3)
+        selectEmodji(selectEmodji: "Animals")
+       gameLevelView(level: 1)
         // Do any additional setup after loading the view.
        // gameLevelView(widthCount: 2, heightCount: 2)
     }
+    
+    
+
 
     func gameLevelView(level:Int){
         var widthCount = 0
         var heightCount = 0
         var labelTag = 1
         var distanceLabel = 0
+       
         var sizeEmodji = 0
         let topConctrait = 80
         let leadingConstrait = 10
@@ -87,7 +92,25 @@ class ViewController: UIViewController {
     }
 
 }
+    
+    func selectEmodji( selectEmodji: String)  {
+        
+        switch selectEmodji {
+        case "Animals":
+          emodji = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]
+        case "Face":
+          emodji = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",]
+        case "Food":
+          emodji = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",]
+            
+        default:
+            print("")
+        }
+        
+    }
+    
     @objc func tapLabel(_ sender: UIGestureRecognizer) {
+        print(emodji)
         let label = (sender.view as! UILabel)
         label.text = emodji[label.tag - 1]
         guard label.text != "🟧"  else {return}
