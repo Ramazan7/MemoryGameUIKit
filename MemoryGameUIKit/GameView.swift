@@ -15,13 +15,35 @@ class GameView: UIViewController {
     var flipBoolDoubleTap = false
     var OneTapMemoryEmodji = ""
     var OneTapMemoryLabel = UILabel()
+    var stepperLevelValue = 1
+    var nameStyleEmodji = "Животные"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectEmodji(selectEmodji: "Food")
-        gameLevelView(level: 3)
+        view.backgroundColor = .black
+        loadSetting()
+        selectEmodji(selectEmodji: nameStyleEmodji)
+        gameLevelView(level: stepperLevelValue)
         // Do any additional setup after loading the view.
         // gameLevelView(widthCount: 2, heightCount: 2)
+    }
+    
+    func loadSetting(){
+        let data = UserDefaults.standard.object(forKey: "levelValue")
+        if data != nil {
+            stepperLevelValue = data as! Int
+        }
+        else{
+            stepperLevelValue = 1
+        }
+        
+        let style = UserDefaults.standard.object(forKey: "styleEmodji")
+        if style != nil {
+            nameStyleEmodji = style as! String
+        }
+        else{
+            nameStyleEmodji = "Животные"
+        }
     }
     
     func gameLevelView(level:Int){
@@ -31,22 +53,24 @@ class GameView: UIViewController {
         var distanceLabel = 0
         
         var sizeEmodji = 0
-        let topConctrait = 80
+        var topConctrait = 80
         let leadingConstrait = 10
         
         
         // - 1 fix array
         switch level {
         case 1:
-            widthCount = 2 - 1
-            heightCount = 2 - 1
-            sizeEmodji = 120
-            distanceLabel = 200
-        case 2:
             widthCount = 4 - 1
             heightCount = 4 - 1
             sizeEmodji = 70
             distanceLabel = 95
+            topConctrait = 140
+        case 2:
+            widthCount = 4 - 1
+            heightCount = 6 - 1
+            sizeEmodji = 70
+            distanceLabel = 95
+            topConctrait = 100
         case 3:
             widthCount = 6 - 1
             heightCount = 8 - 1
@@ -109,11 +133,11 @@ class GameView: UIViewController {
     func selectEmodji( selectEmodji: String)  {
         
         switch selectEmodji {
-        case "Animals":
+        case "Животные":
             emodji = ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤","🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤"]
-        case "Face":
+        case "Эмоции":
             emodji = ["😀","😃","😄","😁","😆","😅","😂","🤣","🥲","☺️","😊","😇","🙂","🙃","😉","😌","😍","😋","😛","😝","😜","🤪","🤨","🧐","😀","😃","😄","😁","😆","😅","😂","🤣","🥲","☺️","😊","😇","🙂","🙃","😉","😌","😍","😋","😛","😝","😜","🤪","🤨","🧐"]
-        case "Food":
+        case "Еда":
             emodji = ["🦑","🦐","🦞","🦀","🐡","🐠","🐟","🐬","🐳","🐋","🦈","🦭","🐊","🐅","🐆","🦓","🦍","🦧","🦣","🐘","🦛","🦏","🐪","🐫","🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤"]
             
         default:
