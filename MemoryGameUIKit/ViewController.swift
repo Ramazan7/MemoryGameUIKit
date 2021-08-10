@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var countFlip = 0
-    var emodji = ["🐌","🐞","🐌","🐞","🦅","🦉","🦅","🦉","🐣","🐥","🪰","🪲","🐣","🐥","🪰","🪲"]
+    var emodji = ["🐌","🐞","🐌","🐞","🦅","🦉","🦅","🦉","🐣","🐥","🪰","🪲","🐣","🐥","🪰","🪲","🐙","🐻","🦋","🦎","🐙","🐻","🦋","🦎","🐌","🐞","🐌","🐞","🦅","🦉","🦅","🦉","🐣","🐥","🪰","🪲","🐣","🐥","🪰","🪲","🐙","🐻","🦋","🦎","🐙","🐻","🦋","🦎","🐌","🐞","🐌","🐞","🦅","🦉","🦅","🦉","🐣","🐥","🪰","🪲","🐣","🐥","🪰","🪲","🐙","🐻","🦋","🦎","🐙","🐻","🦋","🦎"]
     var emodjiSelect = 0
     var flipBool = false
     var OneTapMemoryEmodji = ""
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       gameLevelView(level: 2)
+       gameLevelView(level: 3)
         // Do any additional setup after loading the view.
        // gameLevelView(widthCount: 2, heightCount: 2)
     }
@@ -29,8 +29,8 @@ class ViewController: UIViewController {
         var labelTag = 1
         var distanceLabel = 0
         var sizeEmodji = 0
-         var topConctrait = 70
-         var leadingConstrait = 0
+        let topConctrait = 80
+        let leadingConstrait = 10
         
         
         // - 1 fix array
@@ -40,22 +40,21 @@ class ViewController: UIViewController {
             heightCount = 2 - 1
             sizeEmodji = 120
             distanceLabel = 200
-            leadingConstrait = 50
         case 2:
             widthCount = 4 - 1
             heightCount = 4 - 1
-            sizeEmodji = 80
-            distanceLabel = 100
+            sizeEmodji = 70
+            distanceLabel = 95
         case 3:
-            widthCount = 4 - 1
-            heightCount = 6 - 1
-            sizeEmodji = 30
-            distanceLabel = 25
+            widthCount = 6 - 1
+            heightCount = 8 - 1
+            sizeEmodji = 45
+            distanceLabel = 60
         default:
             print("error")
         }
         
-      
+            var topConstraitTemp = topConctrait
         for _ in 0...heightCount {
             // reset value leading new elements
             var leadingConstraitWidthTemp = leadingConstrait
@@ -77,12 +76,12 @@ class ViewController: UIViewController {
             view.addSubview(label)
             
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(topConctrait)).isActive = true
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(topConstraitTemp)).isActive = true
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(leadingConstraitWidthTemp)).isActive = true
             leadingConstraitWidthTemp = leadingConstraitWidthTemp + distanceLabel
             
         }
-            topConctrait = topConctrait + 120
+            topConstraitTemp = topConstraitTemp + topConctrait
             
         
     }
