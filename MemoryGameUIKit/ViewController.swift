@@ -18,8 +18,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectEmodji(selectEmodji: "Animals")
-       gameLevelView(level: 1)
+        selectEmodji(selectEmodji: "Food")
+       gameLevelView(level: 3)
         // Do any additional setup after loading the view.
        // gameLevelView(widthCount: 2, heightCount: 2)
     }
@@ -97,11 +97,11 @@ class ViewController: UIViewController {
         
         switch selectEmodji {
         case "Animals":
-          emodji = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]
+          emodji = ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤"]
         case "Face":
-          emodji = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",]
+          emodji = ["😀","😃","😄","😁","😆","😅","😂","🤣","🥲","☺️","😊","😇","🙂","🙃","😉","😌","😍","😋","😛","😝","😜","🤪","🤨","🧐"]
         case "Food":
-          emodji = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",]
+          emodji = ["🦑","🦐","🦞","🦀","🐡","🐠","🐟","🐬","🐳","🐋","🦈","🦭","🐊","🐅","🐆","🦓","🦍","🦧","🦣","🐘","🦛","🦏","🐪","🐫"]
             
         default:
             print("")
@@ -110,7 +110,6 @@ class ViewController: UIViewController {
     }
     
     @objc func tapLabel(_ sender: UIGestureRecognizer) {
-        print(emodji)
         let label = (sender.view as! UILabel)
         label.text = emodji[label.tag - 1]
         guard label.text != "🟧"  else {return}
