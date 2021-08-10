@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     var emodjiSelect = 0
     var flipBool = false
     var OneTapMemoryEmodji = ""
+    var OneTapMemoryLabel = UILabel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
        gameLevelView(level: 2)
@@ -27,7 +29,7 @@ class ViewController: UIViewController {
         var labelTag = 1
         var distanceLabel = 0
         var sizeEmodji = 0
-         var topConctrait = 50
+         var topConctrait = 70
          var leadingConstrait = 0
         
         
@@ -59,10 +61,14 @@ class ViewController: UIViewController {
             var leadingConstraitWidthTemp = leadingConstrait
         for _ in 0...widthCount {
             let label = UILabel()
-            label.text = emodji[labelTag - 1]
+           // label.text = emodji[labelTag - 1]
+            label.text = "🟧"
             label.font = label.font.withSize(CGFloat(sizeEmodji))
             label.tag = labelTag
             labelTag = labelTag + 1
+            label.backgroundColor = .orange
+
+            
             let tap = UITapGestureRecognizer(target: self, action: #selector(tapLabel(_:)))
                 tap.numberOfTapsRequired = 1
                 label.isUserInteractionEnabled = true
@@ -84,11 +90,16 @@ class ViewController: UIViewController {
 }
     @objc func tapLabel(_ sender: UIGestureRecognizer) {
         let label = (sender.view as! UILabel)
-      //  tag.text = emodji[2]
+        label.text = emodji[label.tag - 1]
+        guard label.text != "🟧"  else {return}
+        
+           
         
         if(flipBool == false) {
-            OneTapMemoryEmodji = label.text!
+            OneTapMemoryLabel = (sender.view as! UILabel)
+            OneTapMemoryEmodji = OneTapMemoryLabel.text!
             flipBool = true
+            return
         }
         
         if(flipBool == true) {
@@ -96,11 +107,17 @@ class ViewController: UIViewController {
                 let alert = UIAlertController(title: "Выиграли",message: " Красава", preferredStyle: .alert)
                   alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                   self.present(alert, animated: true, completion: nil)
-                 flipBool = false
+                flipBool = false
             }
             else {
-                flipBool = false
-                OneTapMemoryEmodji = ""
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [self] in
+                    flipBool = false
+                    OneTapMemoryEmodji = ""
+                    label.text = "🟧"
+                    OneTapMemoryLabel.text = "🟧"
+                }
+                
             }
         }
         
