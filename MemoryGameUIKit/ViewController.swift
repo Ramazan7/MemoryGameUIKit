@@ -10,11 +10,13 @@ import UIKit
 class ViewController: UIViewController {
 
     var countFlip = 0
-    var emodji = ["🐌","🐞","🐌","🐞","🦅","🦉","🦅","🦉"]
+    var emodji = ["🐌","🐞","🐌","🐞","🦅","🦉","🦅","🦉","🐣","🐥","🪰","🪲","🐣","🐥","🪰","🪲"]
     var emodjiSelect = 0
+    var flipBool = false
+    var OneTapMemoryEmodji = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-       gameLevelView(level: 1)
+       gameLevelView(level: 2)
         // Do any additional setup after loading the view.
        // gameLevelView(widthCount: 2, heightCount: 2)
     }
@@ -25,8 +27,9 @@ class ViewController: UIViewController {
         var labelTag = 1
         var distanceLabel = 0
         var sizeEmodji = 0
-         var topConctrait = 0
+         var topConctrait = 50
          var leadingConstrait = 0
+        
         
         // - 1 fix array
         switch level {
@@ -34,12 +37,13 @@ class ViewController: UIViewController {
             widthCount = 2 - 1
             heightCount = 2 - 1
             sizeEmodji = 120
-            distanceLabel = 100
+            distanceLabel = 200
+            leadingConstrait = 50
         case 2:
             widthCount = 4 - 1
             heightCount = 4 - 1
-            sizeEmodji = 60
-            distanceLabel = 50
+            sizeEmodji = 80
+            distanceLabel = 100
         case 3:
             widthCount = 4 - 1
             heightCount = 6 - 1
@@ -51,35 +55,55 @@ class ViewController: UIViewController {
         
       
         for _ in 0...heightCount {
-        for wCount in 0...widthCount {
+            // reset value leading new elements
+            var leadingConstraitWidthTemp = leadingConstrait
+        for _ in 0...widthCount {
             let label = UILabel()
             label.text = emodji[labelTag - 1]
             label.font = label.font.withSize(CGFloat(sizeEmodji))
             label.tag = labelTag
             labelTag = labelTag + 1
-            
             let tap = UITapGestureRecognizer(target: self, action: #selector(tapLabel(_:)))
                 tap.numberOfTapsRequired = 1
                 label.isUserInteractionEnabled = true
                 label.addGestureRecognizer(tap)
-            
+
             view.addSubview(label)
             
             label.translatesAutoresizingMaskIntoConstraints = false
             label.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(topConctrait)).isActive = true
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(leadingConstrait)).isActive = true
-            leadingConstrait = leadingConstrait + distanceLabel
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(leadingConstraitWidthTemp)).isActive = true
+            leadingConstraitWidthTemp = leadingConstraitWidthTemp + distanceLabel
             
         }
             topConctrait = topConctrait + 120
-            leadingConstrait = 0
+            
         
     }
 
 }
     @objc func tapLabel(_ sender: UIGestureRecognizer) {
-        let tag = (sender.view as! UILabel)
-        tag.text = emodji[2]
+        let label = (sender.view as! UILabel)
+      //  tag.text = emodji[2]
+        
+        if(flipBool == false) {
+            OneTapMemoryEmodji = label.text!
+            flipBool = true
+        }
+        
+        if(flipBool == true) {
+            if(label.text == OneTapMemoryEmodji){
+                let alert = UIAlertController(title: "Выиграли",message: " Красава", preferredStyle: .alert)
+                  alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                  self.present(alert, animated: true, completion: nil)
+                 flipBool = false
+            }
+            else {
+                flipBool = false
+                OneTapMemoryEmodji = ""
+            }
+        }
+        
       /*  let alert = UIAlertController(title: "Выбрали", message: "Select: \(tag)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)*/
