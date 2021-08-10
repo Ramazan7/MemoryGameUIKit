@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var emodji = [String]()
     var emodjiSelect = 0
     var flipBool = false
+    var flipBoolDoubleTap = false
     var OneTapMemoryEmodji = ""
     var OneTapMemoryLabel = UILabel()
 
@@ -97,11 +98,11 @@ class ViewController: UIViewController {
         
         switch selectEmodji {
         case "Animals":
-          emodji = ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤"]
+          emodji = ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤","🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤"]
         case "Face":
-          emodji = ["😀","😃","😄","😁","😆","😅","😂","🤣","🥲","☺️","😊","😇","🙂","🙃","😉","😌","😍","😋","😛","😝","😜","🤪","🤨","🧐"]
+          emodji = ["😀","😃","😄","😁","😆","😅","😂","🤣","🥲","☺️","😊","😇","🙂","🙃","😉","😌","😍","😋","😛","😝","😜","🤪","🤨","🧐","😀","😃","😄","😁","😆","😅","😂","🤣","🥲","☺️","😊","😇","🙂","🙃","😉","😌","😍","😋","😛","😝","😜","🤪","🤨","🧐"]
         case "Food":
-          emodji = ["🦑","🦐","🦞","🦀","🐡","🐠","🐟","🐬","🐳","🐋","🦈","🦭","🐊","🐅","🐆","🦓","🦍","🦧","🦣","🐘","🦛","🦏","🐪","🐫"]
+          emodji = ["🦑","🦐","🦞","🦀","🐡","🐠","🐟","🐬","🐳","🐋","🦈","🦭","🐊","🐅","🐆","🦓","🦍","🦧","🦣","🐘","🦛","🦏","🐪","🐫","🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤"]
             
         default:
             print("")
@@ -111,8 +112,13 @@ class ViewController: UIViewController {
     
     @objc func tapLabel(_ sender: UIGestureRecognizer) {
         let label = (sender.view as! UILabel)
+        if(label.text != "🟧") {
+            return
+        }
+        
         label.text = emodji[label.tag - 1]
-        guard label.text != "🟧"  else {return}
+        label.backgroundColor = .clear
+           
         
            
         
@@ -124,6 +130,7 @@ class ViewController: UIViewController {
         }
         
         if(flipBool == true) {
+            
             if(label.text == OneTapMemoryEmodji){
                 let alert = UIAlertController(title: "Выиграли",message: " Красава", preferredStyle: .alert)
                   alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -136,7 +143,9 @@ class ViewController: UIViewController {
                     flipBool = false
                     OneTapMemoryEmodji = ""
                     label.text = "🟧"
+                    label.backgroundColor = .orange
                     OneTapMemoryLabel.text = "🟧"
+                    OneTapMemoryLabel.backgroundColor = .orange
                 }
                 
             }
