@@ -75,7 +75,7 @@ class SettingView: UIViewController {
         
         
         labelLevel.text = "Уровень сложности: \(String(stepperLevelValue))"
-        labelLevel.font = labelLevel.font.withSize(CGFloat(30))
+        labelLevel.font = labelLevel.font.withSize(CGFloat(27))
         labelLevel.textColor = .orange
   
         view.addSubview(labelLevel)
@@ -87,6 +87,7 @@ class SettingView: UIViewController {
         let stepperLevel = UIStepper()
         stepperLevel.minimumValue = 1
         stepperLevel.maximumValue = 3
+        stepperLevel.backgroundColor = .orange
         stepperLevel.value = Double(stepperLevelValue)
         stepperLevel.addTarget(self, action: #selector(changeStepper(sender:)), for: .valueChanged)
         view.addSubview(stepperLevel)

@@ -17,6 +17,7 @@ class GameView: UIViewController {
     var OneTapMemoryLabel = UILabel()
     var stepperLevelValue = 1
     var nameStyleEmodji = "Животные"
+    var countFlipCheckWin = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,9 +156,6 @@ class GameView: UIViewController {
         label.text = emodji[label.tag - 1]
         label.backgroundColor = .clear
         
-        
-        
-        
         if(flipBool == false) {
             OneTapMemoryLabel = (sender.view as! UILabel)
             OneTapMemoryEmodji = OneTapMemoryLabel.text!
@@ -168,10 +166,24 @@ class GameView: UIViewController {
         if(flipBool == true) {
             
             if(label.text == OneTapMemoryEmodji){
-                let alert = UIAlertController(title: "Выиграли",message: " Красава", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
                 flipBool = false
+                countFlipCheckWin = countFlipCheckWin + 2
+                switch stepperLevelValue {
+                case 1:
+                    if(countFlipCheckWin == 16){
+                        checkWin()
+                    }
+                case 2:
+                    if(countFlipCheckWin == 24){
+                        checkWin()
+                    }
+                case 3:
+                    if(countFlipCheckWin == 48){
+                        checkWin()
+                    }
+                default:
+                    return
+                }
             }
             else {
                 
@@ -182,11 +194,19 @@ class GameView: UIViewController {
                     label.backgroundColor = .orange
                     OneTapMemoryLabel.text = "🟧"
                     OneTapMemoryLabel.backgroundColor = .orange
-                }
+                    }
+
                 
             }
         }
         
+    }
+    
+    func checkWin(){
+        
+        let alert = UIAlertController(title: "Выиграли",message: " Красава", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
 }
