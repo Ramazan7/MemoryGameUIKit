@@ -20,6 +20,10 @@ class GameView: UIViewController {
     var nameStyleEmodji = "Животные"
     var countFlipCheckWin = 0
     var countTouchCard = 0
+    var topRecordOneLevel = 0
+    var topRecordTwoLevel = 0
+    var topRecordThreeLevel = 0
+    var activeDisplayRecord = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +51,7 @@ class GameView: UIViewController {
         else{
             nameStyleEmodji = "Животные"
         }
+        
     }
     
     func gameLevelView(level:Int){
@@ -68,17 +73,20 @@ class GameView: UIViewController {
             sizeEmodji = 70
             distanceLabel = 95
             topConctrait = 140
+            activeDisplayRecord = topRecordOneLevel
         case 2:
             widthCount = 4 - 1
             heightCount = 6 - 1
             sizeEmodji = 70
             distanceLabel = 95
             topConctrait = 100
+            activeDisplayRecord = topRecordTwoLevel
         case 3:
             widthCount = 6 - 1
             heightCount = 8 - 1
             sizeEmodji = 45
             distanceLabel = 60
+            activeDisplayRecord = topRecordThreeLevel
         default:
             print("error")
         }
@@ -128,7 +136,7 @@ class GameView: UIViewController {
             
             
             labelInfoTouch.text = "Количество попыток: \(String(countTouchCard))"
-            labelInfoTouch.font = labelInfoTouch.font.withSize(CGFloat(27))
+            labelInfoTouch.font = labelInfoTouch.font.withSize(CGFloat(20))
             labelInfoTouch.textColor = .orange
       
             view.addSubview(labelInfoTouch)
@@ -136,6 +144,18 @@ class GameView: UIViewController {
             labelInfoTouch.translatesAutoresizingMaskIntoConstraints = false
             labelInfoTouch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
             labelInfoTouch.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+            
+            let labelDisplayRecord = UILabel()
+            labelDisplayRecord.text = "Рекорд:\(String(activeDisplayRecord))"
+            labelDisplayRecord.font = labelInfoTouch.font.withSize(CGFloat(20))
+            labelDisplayRecord.textColor = .orange
+            labelDisplayRecord.numberOfLines = 0
+      
+            view.addSubview(labelDisplayRecord)
+            
+            labelDisplayRecord.translatesAutoresizingMaskIntoConstraints = false
+            labelDisplayRecord.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
+            labelDisplayRecord.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
         }
         
        
@@ -157,6 +177,29 @@ class GameView: UIViewController {
             
         default:
             print("")
+        }
+        
+        //emodji cound level
+        switch stepperLevelValue {
+        case 1:
+            while emodji.count > 16 {
+                emodji.removeLast()
+            }
+            emodji.shuffle()
+            
+        case 2:
+            while emodji.count > 24 {
+                emodji.removeLast()
+            }
+            emodji.shuffle()
+            
+        case 3:
+            while emodji.count > 48 {
+                emodji.removeLast()
+            }
+            emodji.shuffle()
+        default:
+            break
         }
         
     }
@@ -220,14 +263,67 @@ class GameView: UIViewController {
     
     func checkWin(){
         
+        loadRecordData()
+        var winRecord = false
+        switch stepperLevelValue {
+        case 1:
+            if(countTouchCard < topRecordOneLevel) {
+            UserDefaults.standard.setValue(countTouchCard, forKey: "topRecordOneLevel")
+            UserDefaults.standard.synchronize()
+            winRecord = true
+            }
+        case 2:
+            if(countTouchCard < topRecordOneLevel) {
+            UserDefaults.standard.setValue(countTouchCard, forKey: "topRecordTwoLevel")
+            UserDefaults.standard.synchronize()
+            winRecord = true
+            }
+        case 3:
+            if(countTouchCard < topRecordOneLevel) {
+            UserDefaults.standard.setValue(countTouchCard, forKey: "topRecordThreeLevel")
+            UserDefaults.standard.synchronize()
+            winRecord = true
+            }
+        default:
+            return
+        }
         
         
-        let alert = UIAlertController(title: "Вы выиграли",message: "Кол. попыток: \(String(countTouchCard))", preferredStyle: .alert)
+        let alert = UIAlertController(title: winRecord ? "У вас получилось побить рекорд":"Надеюсь получится след раз побить рекорд" ,message: "Кол. попыток: \(String(countTouchCard))", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { UIAlertAction in
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    func loadRecordData(){
+        let tempTopRecordOneLevel = UserDefaults.standard.object(forKey: "topRecordOneLevel")
+        if tempTopRecordOneLevel != nil {
+            let levelRecord = tempTopRecordOneLevel as! Int
+            topRecordOneLevel = levelRecord
+        }
+        else{
+            topRecordOneLevel = 0
+        }
+        
+        let tempTopRecordTwoLevel = UserDefaults.standard.object(forKey: "topRecordTwoLevel")
+        if tempTopRecordTwoLevel != nil {
+            let levelRecord = tempTopRecordTwoLevel as! Int
+            topRecordTwoLevel = levelRecord
+        }
+        else{
+            topRecordOneLevel = 0
+        }
+        
+        let TempTopRecordThreeLevel = UserDefaults.standard.object(forKey: "topRecordThreeLevel")
+        if TempTopRecordThreeLevel != nil {
+            let levelRecord = TempTopRecordThreeLevel as! Int
+            topRecordThreeLevel = levelRecord
+        }
+        else{
+            topRecordThreeLevel = 0
+        }
     }
 
 }

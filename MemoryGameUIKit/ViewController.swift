@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         
         let buttonRecord = UIButton()
         buttonRecord.setTitle("Топ рекордов", for: .normal)
-        buttonRecord.titleLabel?.font = UIFont.systemFont(ofSize: 45, weight: .bold)
+        buttonRecord.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .bold)
         buttonRecord.setTitleColor(.orange, for: .normal)
         buttonRecord.addTarget(self, action: #selector(openRecordGameView), for: .touchUpInside)
         view.addSubview(buttonRecord)
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         
         let buttonSetting = UIButton()
         buttonSetting.setTitle("Настройки", for: .normal)
-        buttonSetting.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+        buttonSetting.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         buttonSetting.setTitleColor(.orange, for: .normal)
         buttonSetting.addTarget(self, action: #selector(openSettingView), for: .touchUpInside)
         view.addSubview(buttonSetting)
