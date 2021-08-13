@@ -25,7 +25,7 @@ class RecordGameView: UIViewController {
     
     func designMenu(){
         
-        labelTopRecordOneLevel.font = labelTopRecordOneLevel.font.withSize(CGFloat(40))
+        labelTopRecordOneLevel.font = labelTopRecordOneLevel.font.withSize(CGFloat(35))
         labelTopRecordOneLevel.textColor = .orange
         labelTopRecordOneLevel.numberOfLines = 0
         view.addSubview(labelTopRecordOneLevel)
@@ -34,7 +34,7 @@ class RecordGameView: UIViewController {
         labelTopRecordOneLevel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelTopRecordOneLevel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
         
-        labelTopRecordTwoLevel.font = labelTopRecordTwoLevel.font.withSize(CGFloat(40))
+        labelTopRecordTwoLevel.font = labelTopRecordTwoLevel.font.withSize(CGFloat(35))
         labelTopRecordTwoLevel.textColor = .orange
         labelTopRecordTwoLevel.numberOfLines = 0
   
@@ -44,7 +44,7 @@ class RecordGameView: UIViewController {
         labelTopRecordTwoLevel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelTopRecordTwoLevel.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
         
-        labelTopRecordThreeLevel.font = labelTopRecordThreeLevel.font.withSize(CGFloat(40))
+        labelTopRecordThreeLevel.font = labelTopRecordThreeLevel.font.withSize(CGFloat(35))
         labelTopRecordThreeLevel.textColor = .orange
         labelTopRecordThreeLevel.numberOfLines = 0
         

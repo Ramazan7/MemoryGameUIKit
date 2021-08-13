@@ -20,9 +20,9 @@ class GameView: UIViewController {
     var nameStyleEmodji = "Животные"
     var countFlipCheckWin = 0
     var countTouchCard = 0
-    var topRecordOneLevel = 0
-    var topRecordTwoLevel = 0
-    var topRecordThreeLevel = 0
+    var topRecordOneLevel = 999
+    var topRecordTwoLevel = 999
+    var topRecordThreeLevel = 999
     var activeDisplayRecord = 0
     
     override func viewDidLoad() {
@@ -30,6 +30,7 @@ class GameView: UIViewController {
         view.backgroundColor = .black
         loadSetting()
         selectEmodji(selectEmodji: nameStyleEmodji)
+        loadRecordData()
         gameLevelView(level: stepperLevelValue)
         // Do any additional setup after loading the view.
         // gameLevelView(widthCount: 2, heightCount: 2)
@@ -63,8 +64,6 @@ class GameView: UIViewController {
         var sizeEmodji = 0
         var topConctrait = 80
         let leadingConstrait = 10
-        
-        
         // - 1 fix array
         switch level {
         case 1:
@@ -273,13 +272,13 @@ class GameView: UIViewController {
             winRecord = true
             }
         case 2:
-            if(countTouchCard < topRecordOneLevel) {
+            if(countTouchCard < topRecordTwoLevel) {
             UserDefaults.standard.setValue(countTouchCard, forKey: "topRecordTwoLevel")
             UserDefaults.standard.synchronize()
             winRecord = true
             }
         case 3:
-            if(countTouchCard < topRecordOneLevel) {
+            if(countTouchCard < topRecordThreeLevel) {
             UserDefaults.standard.setValue(countTouchCard, forKey: "topRecordThreeLevel")
             UserDefaults.standard.synchronize()
             winRecord = true
@@ -295,6 +294,8 @@ class GameView: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
         
+        winRecord = false
+        
     }
     
     func loadRecordData(){
@@ -304,7 +305,7 @@ class GameView: UIViewController {
             topRecordOneLevel = levelRecord
         }
         else{
-            topRecordOneLevel = 0
+            topRecordOneLevel = 999
         }
         
         let tempTopRecordTwoLevel = UserDefaults.standard.object(forKey: "topRecordTwoLevel")
@@ -313,7 +314,7 @@ class GameView: UIViewController {
             topRecordTwoLevel = levelRecord
         }
         else{
-            topRecordOneLevel = 0
+            topRecordTwoLevel = 999
         }
         
         let TempTopRecordThreeLevel = UserDefaults.standard.object(forKey: "topRecordThreeLevel")
@@ -322,7 +323,7 @@ class GameView: UIViewController {
             topRecordThreeLevel = levelRecord
         }
         else{
-            topRecordThreeLevel = 0
+            topRecordThreeLevel = 999
         }
     }
 
