@@ -15,9 +15,11 @@ class GameView: UIViewController {
     var flipBoolDoubleTap = false
     var OneTapMemoryEmodji = ""
     var OneTapMemoryLabel = UILabel()
+    let labelInfoTouch = UILabel()
     var stepperLevelValue = 1
     var nameStyleEmodji = "Животные"
     var countFlipCheckWin = 0
+    var countTouchCard = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +124,18 @@ class GameView: UIViewController {
             buttonClose.translatesAutoresizingMaskIntoConstraints = false
             buttonClose.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
             buttonClose.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+            
+            
+            
+            labelInfoTouch.text = "Количество попыток: \(String(countTouchCard))"
+            labelInfoTouch.font = labelInfoTouch.font.withSize(CGFloat(27))
+            labelInfoTouch.textColor = .orange
+      
+            view.addSubview(labelInfoTouch)
+            
+            labelInfoTouch.translatesAutoresizingMaskIntoConstraints = false
+            labelInfoTouch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
+            labelInfoTouch.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
         }
         
        
@@ -194,6 +208,8 @@ class GameView: UIViewController {
                     label.backgroundColor = .orange
                     OneTapMemoryLabel.text = "🟧"
                     OneTapMemoryLabel.backgroundColor = .orange
+                    countTouchCard = countTouchCard + 1
+                    labelInfoTouch.text = "Количество попыток: \(String(countTouchCard))"
                     }
 
                 
@@ -204,9 +220,14 @@ class GameView: UIViewController {
     
     func checkWin(){
         
-        let alert = UIAlertController(title: "Выиграли",message: " Красава", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        
+        let alert = UIAlertController(title: "Вы выиграли",message: "Кол. попыток: \(String(countTouchCard))", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { UIAlertAction in
+            self.dismiss(animated: true, completion: nil)
+        }))
         self.present(alert, animated: true, completion: nil)
+        
     }
 
 }

@@ -29,11 +29,24 @@ class ViewController: UIViewController {
         
         buttonNewGame.translatesAutoresizingMaskIntoConstraints = false
         buttonNewGame.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        buttonNewGame.topAnchor.constraint(equalTo: view.topAnchor, constant: 350).isActive = true
+        buttonNewGame.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
+        
+        let buttonRecord = UIButton()
+        buttonRecord.setTitle("Топ рекордов", for: .normal)
+        buttonRecord.titleLabel?.font = UIFont.systemFont(ofSize: 45, weight: .bold)
+        buttonRecord.setTitleColor(.orange, for: .normal)
+        buttonRecord.addTarget(self, action: #selector(openRecordGameView), for: .touchUpInside)
+        view.addSubview(buttonRecord)
+        
+        
+        
+        buttonRecord.translatesAutoresizingMaskIntoConstraints = false
+        buttonRecord.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        buttonRecord.topAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
         
         let buttonSetting = UIButton()
         buttonSetting.setTitle("Настройки", for: .normal)
-        buttonSetting.titleLabel?.font = UIFont.systemFont(ofSize: 45, weight: .bold)
+        buttonSetting.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .bold)
         buttonSetting.setTitleColor(.orange, for: .normal)
         buttonSetting.addTarget(self, action: #selector(openSettingView), for: .touchUpInside)
         view.addSubview(buttonSetting)
@@ -42,7 +55,7 @@ class ViewController: UIViewController {
         
         buttonSetting.translatesAutoresizingMaskIntoConstraints = false
         buttonSetting.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        buttonSetting.topAnchor.constraint(equalTo: view.topAnchor, constant: 450).isActive = true
+        buttonSetting.topAnchor.constraint(equalTo: view.topAnchor, constant: 500).isActive = true
        
     }
     
@@ -54,6 +67,12 @@ class ViewController: UIViewController {
     
     @objc func openSettingView(){
         let settingview = SettingView()
+        settingview.modalPresentationStyle = .fullScreen
+       self.present(settingview, animated: true)
+    }
+    
+    @objc func openRecordGameView(){
+        let settingview = RecordGameView()
         settingview.modalPresentationStyle = .fullScreen
        self.present(settingview, animated: true)
     }

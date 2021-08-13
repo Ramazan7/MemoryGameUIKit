@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8444DBA126C6951E00C371AE /* RecordGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8444DBA026C6951E00C371AE /* RecordGameView.swift */; };
 		846E47B826C0271200B95978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E47B726C0271200B95978 /* AppDelegate.swift */; };
 		846E47BA26C0271200B95978 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E47B926C0271200B95978 /* SceneDelegate.swift */; };
 		846E47BC26C0271200B95978 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E47BB26C0271200B95978 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8444DBA026C6951E00C371AE /* RecordGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordGameView.swift; sourceTree = "<group>"; };
 		846E47B426C0271200B95978 /* MemoryGameUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoryGameUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E47B726C0271200B95978 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846E47B926C0271200B95978 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				846E47B926C0271200B95978 /* SceneDelegate.swift */,
 				846E47BB26C0271200B95978 /* ViewController.swift */,
 				84F9B38826C2ED79004B79D5 /* GameView.swift */,
+				8444DBA026C6951E00C371AE /* RecordGameView.swift */,
 				84F9B38A26C2F50F004B79D5 /* SettingView.swift */,
 				846E47BD26C0271200B95978 /* Main.storyboard */,
 				846E47C026C0271400B95978 /* Assets.xcassets */,
@@ -148,6 +151,7 @@
 				846E47B826C0271200B95978 /* AppDelegate.swift in Sources */,
 				84F9B38926C2ED79004B79D5 /* GameView.swift in Sources */,
 				846E47BA26C0271200B95978 /* SceneDelegate.swift in Sources */,
+				8444DBA126C6951E00C371AE /* RecordGameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
