@@ -261,7 +261,7 @@ class GameView: UIViewController {
     }
     
     func checkWin(){
-        
+        print(stepperLevelValue)
         loadRecordData()
         var winRecord = false
         switch stepperLevelValue {
@@ -275,6 +275,7 @@ class GameView: UIViewController {
             if(countTouchCard < topRecordTwoLevel) {
             UserDefaults.standard.setValue(countTouchCard, forKey: "topRecordTwoLevel")
             UserDefaults.standard.synchronize()
+                print("2 save")
             winRecord = true
             }
         case 3:

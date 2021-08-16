@@ -84,7 +84,7 @@ class RecordGameView: UIViewController {
         
         let topRecordTwoLevel = UserDefaults.standard.object(forKey: "topRecordTwoLevel")
         if topRecordTwoLevel != nil {
-            let levelRecord = topRecordOneLevel as! Int
+            let levelRecord = topRecordTwoLevel as! Int
             labelTopRecordTwoLevel.text = "Лучший рекорд \n 2 уровня: \(String(levelRecord)) попыток"
         }
         else{
@@ -93,7 +93,7 @@ class RecordGameView: UIViewController {
         
         let topRecordThreeLevel = UserDefaults.standard.object(forKey: "topRecordThreeLevel")
         if topRecordThreeLevel != nil {
-            let levelRecord = topRecordOneLevel as! Int
+            let levelRecord = topRecordThreeLevel as! Int
             labelTopRecordThreeLevel.text = "Лучший рекорд \n 3 уровня: \(String(levelRecord)) попыток"
         }
         else{
