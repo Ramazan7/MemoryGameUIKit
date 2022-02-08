@@ -10,6 +10,9 @@ import UIKit
 class SettingView: UIViewController {
     let labelLevel = UILabel()
     let labelEmodjiSelect = UILabel()
+    let emodjiOne = UIButton()
+    let emodjiTwo = UIButton()
+    let emodjiThree = UIButton()
     var stepperLevelValue : Int = 1
     var nameStyleEmodji : String = "Животные"
     override func viewDidLoad() {
@@ -43,36 +46,47 @@ class SettingView: UIViewController {
         labelEmodjiSelect.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
        
  
-        let emodjiOne = UIButton()
+        let stackviewEmodji = UIStackView()
+        stackviewEmodji.axis = .horizontal
+        stackviewEmodji.spacing = 70
+        view.addSubview(stackviewEmodji)
+        
+        stackviewEmodji.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackviewEmodji.topAnchor.constraint(equalTo: labelTextSelectEmodji.bottomAnchor, constant: 100).isActive = true
+        stackviewEmodji.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
+        stackviewEmodji.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         emodjiOne.setTitle("🐶", for: .normal)
-        emodjiOne.titleLabel?.font = UIFont.systemFont(ofSize: 50)
         emodjiOne.addTarget(self, action: #selector(emodjiTap(sender:)), for: .touchUpInside)
-        view.addSubview(emodjiOne)
+//        view.addSubview(emodjiOne)
+//
+//
+//        emodjiOne.translatesAutoresizingMaskIntoConstraints = false
+//        emodjiOne.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+//        emodjiOne.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
         
-        emodjiOne.translatesAutoresizingMaskIntoConstraints = false
-        emodjiOne.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        emodjiOne.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
         
-        let emodjiTwo = UIButton()
         emodjiTwo.setTitle("😀", for: .normal)
-        emodjiTwo.titleLabel?.font = UIFont.systemFont(ofSize: 50)
         emodjiTwo.addTarget(self, action: #selector(emodjiTap(sender:)), for: .touchUpInside)
-        view.addSubview(emodjiTwo)
+//        view.addSubview(emodjiTwo)
+//
+//        emodjiTwo.translatesAutoresizingMaskIntoConstraints = false
+//        emodjiTwo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        emodjiTwo.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
         
-        emodjiTwo.translatesAutoresizingMaskIntoConstraints = false
-        emodjiTwo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        emodjiTwo.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
         
-        let emodjiThree = UIButton()
         emodjiThree.setTitle("🍏", for: .normal)
-        emodjiThree.titleLabel?.font = UIFont.systemFont(ofSize: 50)
         emodjiThree.addTarget(self, action: #selector(emodjiTap(sender:)), for: .touchUpInside)
-        view.addSubview(emodjiThree)
+//        view.addSubview(emodjiThree)
+//
+//        emodjiThree.translatesAutoresizingMaskIntoConstraints = false
+//        emodjiThree.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+//        emodjiThree.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
         
-        emodjiThree.translatesAutoresizingMaskIntoConstraints = false
-        emodjiThree.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        emodjiThree.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
-        
+        stackviewEmodji.addArrangedSubview(emodjiOne)
+        stackviewEmodji.addArrangedSubview(emodjiTwo)
+        stackviewEmodji.addArrangedSubview(emodjiThree)
         
         labelLevel.text = "Уровень сложности: \(String(stepperLevelValue))"
         labelLevel.font = labelLevel.font.withSize(CGFloat(27))
@@ -106,7 +120,7 @@ class SettingView: UIViewController {
         
         buttonSave.translatesAutoresizingMaskIntoConstraints = false
         buttonSave.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        buttonSave.topAnchor.constraint(equalTo: view.topAnchor, constant: 650).isActive = true
+        buttonSave.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
         
     }
     
@@ -120,15 +134,27 @@ class SettingView: UIViewController {
         case "🐶":
             labelEmodjiSelect.text = "Животные"
             nameStyleEmodji = "Животные"
+            sender.titleLabel?.font = UIFont.systemFont(ofSize: 80)
+            emodjiTwo.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+            emodjiThree.titleLabel?.font = UIFont.systemFont(ofSize: 50)
         case "😀":
             labelEmodjiSelect.text = "Эмоции"
             nameStyleEmodji = "Эмоции"
+            sender.titleLabel?.font = UIFont.systemFont(ofSize: 80)
+            emodjiOne.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+            emodjiThree.titleLabel?.font = UIFont.systemFont(ofSize: 50)
         case "🍏":
             labelEmodjiSelect.text = "Еда"
             nameStyleEmodji = "Еда"
+            sender.titleLabel?.font = UIFont.systemFont(ofSize: 80)
+            emodjiOne.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+            emodjiTwo.titleLabel?.font = UIFont.systemFont(ofSize: 50)
         default:
             nameStyleEmodji = "Животные"
             labelEmodjiSelect.text = "Животные"
+            sender.titleLabel?.font = UIFont.systemFont(ofSize: 80)
+            emodjiTwo.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+            emodjiThree.titleLabel?.font = UIFont.systemFont(ofSize: 50)
         }
     }
     
@@ -157,9 +183,39 @@ class SettingView: UIViewController {
         let style = UserDefaults.standard.object(forKey: "styleEmodji")
         if style != nil {
             nameStyleEmodji = style as! String
+            switch nameStyleEmodji {
+            case "Животные":
+                labelEmodjiSelect.text = "Животные"
+                nameStyleEmodji = "Животные"
+                emodjiOne.titleLabel?.font = UIFont.systemFont(ofSize: 80)
+                emodjiTwo.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+                emodjiThree.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+            case "Эмоции":
+                labelEmodjiSelect.text = "Эмоции"
+                nameStyleEmodji = "Эмоции"
+                emodjiOne.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+                emodjiTwo.titleLabel?.font = UIFont.systemFont(ofSize: 80)
+                emodjiThree.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+            case "Еда":
+                labelEmodjiSelect.text = "Еда"
+                nameStyleEmodji = "Еда"
+                emodjiOne.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+                emodjiTwo.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+                emodjiThree.titleLabel?.font = UIFont.systemFont(ofSize: 80)
+            default:
+                nameStyleEmodji = "Животные"
+                labelEmodjiSelect.text = "Животные"
+                emodjiOne.titleLabel?.font = UIFont.systemFont(ofSize: 80)
+                emodjiTwo.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+                emodjiThree.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+            }
         }
         else{
+            labelEmodjiSelect.text = "Животные"
             nameStyleEmodji = "Животные"
+            emodjiOne.titleLabel?.font = UIFont.systemFont(ofSize: 80)
+            emodjiTwo.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+            emodjiThree.titleLabel?.font = UIFont.systemFont(ofSize: 50)
         }
     }
 }

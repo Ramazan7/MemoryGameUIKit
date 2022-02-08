@@ -25,6 +25,17 @@ class RecordGameView: UIViewController {
     
     func designMenu(){
         
+        let labelTitle = UILabel()
+        labelTitle.text = "Топ рекордов"
+        labelTitle.font = labelTopRecordOneLevel.font.withSize(CGFloat(35))
+        labelTitle.textColor = .orange
+        labelTitle.numberOfLines = 0
+        view.addSubview(labelTitle)
+        
+        labelTitle.translatesAutoresizingMaskIntoConstraints = false
+        labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        labelTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        
         labelTopRecordOneLevel.font = labelTopRecordOneLevel.font.withSize(CGFloat(35))
         labelTopRecordOneLevel.textColor = .orange
         labelTopRecordOneLevel.numberOfLines = 0
@@ -32,7 +43,7 @@ class RecordGameView: UIViewController {
         
         labelTopRecordOneLevel.translatesAutoresizingMaskIntoConstraints = false
         labelTopRecordOneLevel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        labelTopRecordOneLevel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        labelTopRecordOneLevel.topAnchor.constraint(equalTo: labelTitle.topAnchor, constant: 100).isActive = true
         
         labelTopRecordTwoLevel.font = labelTopRecordTwoLevel.font.withSize(CGFloat(35))
         labelTopRecordTwoLevel.textColor = .orange
@@ -42,7 +53,7 @@ class RecordGameView: UIViewController {
         
         labelTopRecordTwoLevel.translatesAutoresizingMaskIntoConstraints = false
         labelTopRecordTwoLevel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        labelTopRecordTwoLevel.topAnchor.constraint(equalTo: view.topAnchor, constant: 300).isActive = true
+        labelTopRecordTwoLevel.topAnchor.constraint(equalTo: labelTopRecordOneLevel.topAnchor, constant: 100).isActive = true
         
         labelTopRecordThreeLevel.font = labelTopRecordThreeLevel.font.withSize(CGFloat(35))
         labelTopRecordThreeLevel.textColor = .orange
@@ -52,7 +63,7 @@ class RecordGameView: UIViewController {
         
         labelTopRecordThreeLevel.translatesAutoresizingMaskIntoConstraints = false
         labelTopRecordThreeLevel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        labelTopRecordThreeLevel.topAnchor.constraint(equalTo: view.topAnchor, constant: 500).isActive = true
+        labelTopRecordThreeLevel.topAnchor.constraint(equalTo: labelTopRecordTwoLevel.topAnchor, constant: 100).isActive = true
         
         let buttonClose = UIButton()
         buttonClose.setTitle("Назад", for: .normal)
@@ -65,7 +76,7 @@ class RecordGameView: UIViewController {
         
         buttonClose.translatesAutoresizingMaskIntoConstraints = false
         buttonClose.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        buttonClose.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        buttonClose.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
     }
     
     @objc func clickBackView(){

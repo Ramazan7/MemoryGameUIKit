@@ -27,7 +27,7 @@ class GameView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        
         loadSetting()
         selectEmodji(selectEmodji: nameStyleEmodji)
         loadRecordData()
@@ -89,11 +89,12 @@ class GameView: UIViewController {
         default:
             print("error")
         }
-        
+        var startDrawingPositionElements = true
         var topConstraitTemp = topConctrait
         for _ in 0...heightCount {
             // reset value leading new elements
             var leadingConstraitWidthTemp = leadingConstrait
+            if(startDrawingPositionElements) { topConstraitTemp = 70}
             for _ in 0...widthCount {
                 let label = UILabel()
                 // label.text = emodji[labelTag - 1]
@@ -118,6 +119,7 @@ class GameView: UIViewController {
                 
             }
             topConstraitTemp = topConstraitTemp + topConctrait
+            startDrawingPositionElements = false
             
             let buttonClose = UIButton()
             buttonClose.setTitle("Сдаться", for: .normal)
